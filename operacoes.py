@@ -1,3 +1,5 @@
+from tkinter import *
+
 def soma(A, B):
     sum = A + B
     return sum
@@ -13,3 +15,6 @@ def subt(A, B):
 def divisao(A, B):
     divi = A / B
     return divi
+
+
+    

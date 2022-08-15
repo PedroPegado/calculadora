@@ -24,6 +24,12 @@ img_8 = PhotoImage(file='imagens\\designs\\8.png')
 img_9 = PhotoImage(file='imagens\\designs\\9.png')
 img_0 = PhotoImage(file='imagens\\designs\\0.png')
 
+img_igaul = PhotoImage(file="imagens\\designs\\igual.png")
+img_mais = PhotoImage(file="imagens\\designs\\+.png")
+img_menos = PhotoImage(file="imagens\\designs\\-.png")
+img_dividir = PhotoImage(file="imagens\\designs\\divi.png")
+img_multiplicar = PhotoImage(file="imagens\\designs\\multi.png")
+
 
 #janela
 labFundo = Label(janela, image=imagemFundo)
@@ -56,6 +62,26 @@ bt_8.place(width=45, height=60, x=138, y=336)
 
 bt_9 = Button(janela, bd=0.5, image=img_9)
 bt_9.place(width=45, height=60, x=231, y=336)
+
+bt_0 = Button(janela, bd=0.5, image=img_0)
+bt_0.place(width=45, height=60, x=138, y=430)
+
+
+# Criando botoes
+btIgual = Button(janela,bd= 0.5, image=img_igaul)
+btIgual.place(width= 78, height=48, x = 284, y= 442)
+
+btMais = Button(janela,bd= 0.5, image=img_mais)
+btMais.place(width= 45, height=60, x = 317, y= 368)
+
+btMenos = Button(janela,bd= 0.5, image=img_menos)
+btMenos.place(width= 45, height=60, x = 317, y= 294)
+
+btMult = Button(janela,bd= 0.5, image=img_multiplicar)
+btMult.place(width= 45, height=60, x = 317, y= 220)
+
+btDividir = Button(janela,bd= 0.5, image=img_dividir)
+btDividir.place(width= 45, height=60, x = 317, y= 146 )
 
 
 #entrada = Entry(janela, bd = 3, font = ("Arial", 15), justify = CENTER )
