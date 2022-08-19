@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import messagebox
-from tkinter import font
 
 def alterarTextoBt_1():
     lblText["text"] += "1"
@@ -36,7 +35,6 @@ def pegarValorDoMult():
     lblText["text"] +="*"
 
 def calcular():
-
     valores = lblText["text"]
     try:
         resultado = eval(valores)
@@ -65,7 +63,6 @@ def apagar():
     else:
         nvText = ""
     lblText["text"] = nvText
-    print(textDoLabel)
 def limpar():
     lblText["text"] = ""
 
@@ -78,19 +75,31 @@ def novaJanela():
     janela_cient.focus_force()
     janela_cient.grab_set()
     #criando botoes na nova janela
-    btVoltar = Button(janela_cient, text='Voltar', font='Arial 10 bold', command=janela_cient.destroy)
-    btVoltar.place(width=70, height=20, x=0, y=0)
+    barraMenu = Menu(janela_cient)
+    menuVoltar = Menu(barraMenu, tearoff=0)
+    menuVoltar.add_command(label='Voltar', command=janela_cient.destroy)
+    menuVoltar.add_command(label='Histórico', command=historico)
+    barraMenu.add_cascade(label='OPÇÕES', menu=menuVoltar)
+    janela_cient.config(menu=barraMenu)
 
+def historico():
+    print('')
 
 janela = Tk()
 janela.title("Calculadora")
 janela.geometry("400x500+720+300")
 janela.resizable(False, False)
+barraMenu = Menu(janela)
+menuOpções = Menu(barraMenu, tearoff=0)
+menuOpções.add_command(label='Científica', command=novaJanela)
+menuOpções.add_command(label='Histórico', command=historico)
+barraMenu.add_cascade(label='OPÇÕES', menu=menuOpções)
+janela.config(menu= barraMenu)
 
 # Imagem do icon
 janela.iconbitmap(default="imagens\\designs\\bmo.ico")
 
-imagemFundo = PhotoImage(file="imagens\\designs\\calculadora_semfundo2.0.png")
+imagemFundo = PhotoImage(file="imagens\\designs\\calculadora_semfundo3.0.png")
 
 #botoes_numeros
 img_1 = PhotoImage(file='imagens\\designs\\1.png')
@@ -105,76 +114,76 @@ img_9 = PhotoImage(file='imagens\\designs\\9.png')
 img_0 = PhotoImage(file='imagens\\designs\\0.png')
 
 img_igaul = PhotoImage(file="imagens\\designs\\igual.png")
-img_mais = PhotoImage(file="imagens\\designs\\+.png")
-img_menos = PhotoImage(file="imagens\\designs\\-.png")
-img_dividir = PhotoImage(file="imagens\\designs\\divi.png")
+img_mais = PhotoImage(file="imagens\\designs\\adicao.png")
+img_menos = PhotoImage(file="imagens\\designs\\subt.png")
+img_dividir = PhotoImage(file="imagens\\designs\\div.png")
 img_multiplicar = PhotoImage(file="imagens\\designs\\multi.png")
-img_Apagar = PhotoImage(file="imagens\\designs\\img.png")
+img_Apagar = PhotoImage(file="imagens\\designs\\apagar.png")
+img_limpar = PhotoImage(file="imagens\\designs\\C.png")
+img_ponto =PhotoImage(file="imagens\\designs\\ponto.png")
 
 
 #janela
 labFundo = Label(janela, image=imagemFundo)
 labFundo.pack()
 
-#posicionando_botoes
-bt_1 = Button(janela, bd=0.5, image=img_1,command= alterarTextoBt_1)
-bt_1.place(width=45, height=60, x=45, y=145.5)
-
-bt_2 = Button(janela, bd=0.5, image=img_2,command= alterarTextoBt_2)
-bt_2.place(width=45, height=60, x=138, y=145.5)
-
-bt_3 = Button(janela, bd=0.5, image=img_3,command= alterarTextoBt_3)
-bt_3.place(width=45, height=60, x=231, y=145.5)
-
-bt_4 = Button(janela, bd=0.5, image=img_4,command= alterarTextoBt_4)
-bt_4.place(width=45, height=60, x=45, y=241)
-
-bt_5 = Button(janela, bd=0.5, image=img_5,command= alterarTextoBt_5)
-bt_5.place(width=45, height=60, x=138, y=241)
-
-bt_6 = Button(janela, bd=0.5, image=img_6,command= alterarTextoBt_6)
-bt_6.place(width=45, height=60, x=231, y=241)
-
-bt_7 = Button(janela, bd=0.5, image=img_7,command= alterarTextoBt_7)
-bt_7.place(width=45, height=60, x=45, y=336)
-
-bt_8 = Button(janela, bd=0.5, image=img_8,command= alterarTextoBt_8)
-bt_8.place(width=45, height=60, x=138, y=336)
-
-bt_9 = Button(janela, bd=0.5, image=img_9,command= alterarTextoBt_9)
-bt_9.place(width=45, height=60, x=231, y=336)
-
-bt_0 = Button(janela, bd=0.5, image=img_0,command= alterarTextoBt_0)
-bt_0.place(width=45, height=60, x=138, y=430)
 
 
-# Criando botoes
-btIgual = Button(janela,bd= 0.5, image=img_igaul,command= calcular)
-btIgual.place(width= 78, height=48, x = 284, y= 442)
+# criando e posicionando botoes dos numeros
+bt_1 = Button(janela, bd=0.5, image=img_1,command=alterarTextoBt_1)
+bt_1.place(width=57, height=84, x=28, y=319)
+
+bt_2 = Button(janela, bd=0.5, image=img_2,command=alterarTextoBt_2)
+bt_2.place(width=57, height=84, x=111, y=319)
+
+bt_3 = Button(janela, bd=0.5, image=img_3,command=alterarTextoBt_3)
+bt_3.place(width=57, height=84, x=194, y=319)
+
+bt_4 = Button(janela, bd=0.5, image=img_4,command=alterarTextoBt_4)
+bt_4.place(width=57, height=84, x=28, y=229)
+
+bt_5 = Button(janela, bd=0.5, image=img_5,command=alterarTextoBt_5)
+bt_5.place(width=57, height=84, x=111, y=229)
+
+bt_6 = Button(janela, bd=0.5, image=img_6,command=alterarTextoBt_6)
+bt_6.place(width=57, height=84, x=194, y=229)
+
+bt_7 = Button(janela, bd=0.5, image=img_7,command=alterarTextoBt_7)
+bt_7.place(width=57, height=84, x=28, y=139.5)
+
+bt_8 = Button(janela, bd=0.5, image=img_8,command=alterarTextoBt_8)
+bt_8.place(width=57, height=84, x=111, y=139.5)
+
+bt_9 = Button(janela, bd=0.5, image=img_9,command=alterarTextoBt_9)
+bt_9.place(width=57, height=84, x=194, y=139.5)
+
+bt_0 = Button(janela, bd=0.5, image=img_0,command=alterarTextoBt_0)
+bt_0.place(width=57, height=84, x=111, y=409)
+
+# Criando e posixionando botoes das operacoes
+btIgual = Button(janela,bd= 0.8, image=img_igaul,command=calcular)
+btIgual.place(width= 85, height=57, x = 287, y= 437)
 
 btMais = Button(janela,bd= 0.5, image=img_mais, command= pegarValorDoMAis)
-btMais.place(width= 45, height=60, x = 317, y= 368)
+btMais.place(width= 85, height=57, x = 287, y= 375)
 
 btMenos = Button(janela,bd= 0.5, image=img_menos,command= pegarValorDoMenos)
-btMenos.place(width= 45, height=60, x = 317, y= 294)
+btMenos.place(width= 85, height=57, x = 287, y= 314)
 
 btMult = Button(janela,bd= 0.5, image=img_multiplicar, command= pegarValorDoMult)
-btMult.place(width= 45, height=60, x = 317, y= 220)
+btMult.place(width= 85, height=57, x = 287, y= 253)
 
 btDividir = Button(janela,bd= 0.5, image=img_dividir, command= pegarValorDoDiv)
-btDividir.place(width= 45, height=60, x = 317, y= 146 )
+btDividir.place(width= 85, height=57, x = 287, y=192)
 
-btApagar = Button(janela, bd=0.5, image=img_Apagar, command = apagar )
-btApagar.place(width=78, height=48, x=12.5, y= 442)
+btApagar = Button(janela, bd=0.5, image=img_Apagar, command=apagar)
+btApagar.place(width=57, height=84, x=28, y= 409)
 
-btLimpar = Button(janela, bd= 0.5, command=  limpar, text="C", font="Arial 15 bold", bg="#2dbec8")
-btLimpar.place(width=78, height=48, x=200, y= 442)
+btLimpar = Button(janela, bd= 0.5, command= limpar, image=img_limpar)
+btLimpar.place(width=85, height=57, x=287, y= 132)
 
-btPonto = Button(janela, bd=0.5, text=".", font="Arial 15 bold",command= alterarTextoBt_ponto, bg="#2dbec8")
-btPonto.place( width= 45, height=60,x=92, y=430)
-
-btCient = Button(janela, text='Científica', font='Arial 10 bold', command= novaJanela)
-btCient.place(width=70, height=20, x=0, y=0)
+btPonto = Button(janela, bd=0.5, text=".", font="Arial 15 bold",command=alterarTextoBt_ponto,  image=img_ponto)
+btPonto.place( width=57, height=84,x=194, y=409)
 
 
 # criando Label para o texto
@@ -185,8 +194,6 @@ lblOp = Label(lblText, text="", font=("Calculator 7 bold"), anchor="e", bg="#B6F
 lblOp.place(width=300, height=20, x=30, y=10)
 
 
-#entrada = Entry(janela, bd = 3, font = ("Arial", 15), justify = CENTER )
-#entrada.grid(column =0 , row = 0)
 janela.mainloop()
 
 
