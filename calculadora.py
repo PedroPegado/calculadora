@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 
+
 def alterarTextoBt_1():
     lblText["text"] += "1"
 def alterarTextoBt_2():
@@ -66,7 +67,72 @@ def apagar():
 def limpar():
     lblText["text"] = ""
 
+
 def novaJanela():
+    def alterarTextoBt_1():
+        lblText2["text"] += "1"
+    def alterarTextoBt_2():
+        lblText2["text"] += "2"
+    def alterarTextoBt_3():
+        lblText2["text"] += "3"
+    def alterarTextoBt_4():
+        lblText2["text"] += "4"
+    def alterarTextoBt_5():
+        lblText2["text"] += "5"
+    def alterarTextoBt_6():
+        lblText2["text"] += "6"
+    def alterarTextoBt_7():
+        lblText2["text"] += "7"
+    def alterarTextoBt_8():
+        lblText2["text"] += "8"
+    def alterarTextoBt_9():
+        lblText2["text"] += "9"
+    def alterarTextoBt_0():
+        lblText2["text"] += "0"
+    def alterarTextoBt_ponto():
+        lblText2["text"] += "."
+
+    valores = ""
+    def pegarValorDoMAis():
+        lblText2["text"] += "!"
+    def pegarValorDoMenos():
+        lblText2["text"] +="-"
+    def pegarValorDoDiv():
+        lblText2["text"] +="**"
+    def pegarValorDoMult():
+        lblText2["text"] +="*"
+
+    def calcular():
+        valores = lblText2["text"]
+        try:
+            resultado = eval(valores)
+            lblText2["text"] = str(resultado)
+            lblOp2["text"] = str(valores)+" ="
+        except SyntaxError or ZeroDivisionError:
+            lblText2["text"] = "ERRO"
+            lblText2.config(fg="#c82d58")
+
+            messagebox.showinfo("ERRO", "Expressão inválida!")
+            lblText2["text"] = ""
+            lblText2.config(fg="black")
+
+    def apagar():
+        textDoLabel = lblText2["text"]
+        nvText = ""
+        cont = 0
+        tam = len(textDoLabel)
+        if tam > 1:
+            while(tam > cont):
+                if(cont == (tam-1)):
+                    break
+                else:
+                    nvText += textDoLabel[cont]
+                cont += 1
+        else:
+            nvText = ""
+        lblText2["text"] = nvText
+    def limpar():
+        lblText2["text"] = ""
     janela_cient = Toplevel()
     janela_cient.title('Calculadora Científica')
     janela_cient.geometry('400x500+720+300')
@@ -81,6 +147,71 @@ def novaJanela():
     menuVoltar.add_command(label='Histórico', command=historico)
     barraMenu.add_cascade(label='OPÇÕES', menu=menuVoltar)
     janela_cient.config(menu=barraMenu)
+    labFundo = Label(janela_cient, image=imagemFundo)
+    labFundo.pack()
+    # criando e posicionando botoes dos numeros
+    bt_1 = Button( janela_cient, bd=0.5, image=img_1,command=alterarTextoBt_1)
+    bt_1.place(width=57, height=84, x=28, y=319)
+
+    bt_2 = Button( janela_cient, bd=0.5, image=img_2,command=alterarTextoBt_2)
+    bt_2.place(width=57, height=84, x=111, y=319)
+
+    bt_3 = Button( janela_cient, bd=0.5, image=img_3,command=alterarTextoBt_3)
+    bt_3.place(width=57, height=84, x=194, y=319)
+
+    bt_4 = Button( janela_cient, bd=0.5, image=img_4,command=alterarTextoBt_4)
+    bt_4.place(width=57, height=84, x=28, y=229)
+
+    bt_5 = Button( janela_cient, bd=0.5, image=img_5,command=alterarTextoBt_5)
+    bt_5.place(width=57, height=84, x=111, y=229)
+
+    bt_6 = Button( janela_cient, bd=0.5, image=img_6,command=alterarTextoBt_6)
+    bt_6.place(width=57, height=84, x=194, y=229)
+
+    bt_7 = Button( janela_cient, bd=0.5, image=img_7,command=alterarTextoBt_7)
+    bt_7.place(width=57, height=84, x=28, y=139.5)
+
+    bt_8 = Button( janela_cient, bd=0.5, image=img_8,command=alterarTextoBt_8)
+    bt_8.place(width=57, height=84, x=111, y=139.5)
+
+    bt_9 = Button( janela_cient, bd=0.5, image=img_9,command=alterarTextoBt_9)
+    bt_9.place(width=57, height=84, x=194, y=139.5)
+
+    bt_0 = Button( janela_cient, bd=0.5, image=img_0,command=alterarTextoBt_0)
+    bt_0.place(width=57, height=84, x=111, y=409)
+
+    # Criando e posixionando botoes das operacoes
+    btIgual = Button( janela_cient,bd= 0.8, image=img_igaul,command=calcular)
+    btIgual.place(width= 85, height=57, x = 287, y= 437)
+
+    btFator = Button( janela_cient,bd= 0.5, image=img_fatorial, command= pegarValorDoMAis)
+    btFator.place(width= 85, height=57, x = 287, y= 375)
+
+    btPorcent = Button( janela_cient,bd= 0.5, image=img_porcentagem,command= pegarValorDoMenos)
+    btPorcent.place(width= 85, height=57, x = 287, y= 314)
+
+    btRad = Button( janela_cient,bd= 0.5, image=img_rad, command= pegarValorDoMult)
+    btRad.place(width= 85, height=57, x = 287, y= 253)
+
+    btPoten = Button( janela_cient,bd= 0.5, image=img_potencia, command= pegarValorDoDiv)
+    btPoten.place(width= 85, height=57, x = 287, y=192)
+
+    btApagar = Button( janela_cient, bd=0.5, image=img_Apagar, command=apagar)
+    btApagar.place(width=57, height=84, x=28, y= 409)
+
+    btLimpar = Button( janela_cient, bd= 0.5, command= limpar, image=img_limpar)
+    btLimpar.place(width=85, height=57, x=287, y= 132)
+
+    btPonto = Button( janela_cient, bd=0.5, text=".", font="Arial 15 bold",command=alterarTextoBt_ponto,  image=img_ponto)
+    btPonto.place( width=57, height=84,x=194, y=409)
+
+
+    # criando Label para o texto
+    lblText2 = Label(janela_cient,text="", font=("Anton 20 bold"), bg="#B6FFC7", anchor="e",width=2)
+    lblText2.place(width=345, height=100, x=27, y=27)
+
+    lblOp2 = Label(lblText2, text="", font=("Anton 8 bold"), anchor="e", bg="#B6FFC7")
+    lblOp2.place(width=300, height=20, x=30, y=10)
 
 def historico():
     print('')
@@ -96,12 +227,7 @@ menuOpções.add_command(label='Histórico', command=historico)
 barraMenu.add_cascade(label='OPÇÕES', menu=menuOpções)
 janela.config(menu= barraMenu)
 
-# Imagem do icon
-janela.iconbitmap(default="imagens\\designs\\bmo.ico")
-
-imagemFundo = PhotoImage(file="imagens\\designs\\calculadora_semfundo3.0.png")
-
-#botoes_numeros
+#imagens
 img_1 = PhotoImage(file='imagens\\designs\\1.png')
 img_2 = PhotoImage(file='imagens\\designs\\2.png')
 img_3 = PhotoImage(file='imagens\\designs\\3.png')
@@ -121,12 +247,20 @@ img_multiplicar = PhotoImage(file="imagens\\designs\\multi.png")
 img_Apagar = PhotoImage(file="imagens\\designs\\apagar.png")
 img_limpar = PhotoImage(file="imagens\\designs\\C.png")
 img_ponto =PhotoImage(file="imagens\\designs\\ponto.png")
+img_porcentagem = PhotoImage(file="imagens\\designs\\porcen.png")
+img_potencia = PhotoImage(file="imagens\\designs\\poten.png")
+img_fatorial = PhotoImage(file="imagens\\designs\\fator.png")
+img_rad = PhotoImage(file="imagens\\designs\\radi.png")
+
+# Imagem do icon
+janela.iconbitmap(default="imagens\\designs\\bmo.ico")
+imagemFundo = PhotoImage(file="imagens\\designs\\calculadora_semfundo3.0.png")
+#botoes_numeros
 
 
 #janela
 labFundo = Label(janela, image=imagemFundo)
 labFundo.pack()
-
 
 
 # criando e posicionando botoes dos numeros
@@ -187,10 +321,10 @@ btPonto.place( width=57, height=84,x=194, y=409)
 
 
 # criando Label para o texto
-lblText = Label(janela,text="", font=("Arial", 25), bg="#B6FFC7", anchor="e",width=2)
+lblText = Label(janela,text="", font=("Anton 20 bold"), bg="#B6FFC7", anchor="e",width=2)
 lblText.place(width=345, height=100, x=27, y=27)
 
-lblOp = Label(lblText, text="", font=("Calculator 7 bold"), anchor="e", bg="#B6FFC7")
+lblOp = Label(lblText, text="", font=("Anton 8 bold"), anchor="e", bg="#B6FFC7")
 lblOp.place(width=300, height=20, x=30, y=10)
 
 
