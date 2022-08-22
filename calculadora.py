@@ -41,7 +41,14 @@ def calcular():
         resultado = eval(valores)
         lblText["text"] = str(resultado)
         lblOp["text"] = str(valores)+" ="
-    except SyntaxError or ZeroDivisionError:
+    except SyntaxError:
+        lblText["text"] = "ERRO"
+        lblText.config(fg="#c82d58")
+
+        messagebox.showinfo("ERRO", "Expressão inválida!")
+        lblText["text"] = ""
+        lblText.config(fg="black")
+    except ZeroDivisionError:
         lblText["text"] = "ERRO"
         lblText.config(fg="#c82d58")
 
@@ -108,7 +115,14 @@ def novaJanela():
             resultado = eval(valores)
             lblText2["text"] = str(resultado)
             lblOp2["text"] = str(valores)+" ="
-        except SyntaxError or ZeroDivisionError:
+        except SyntaxError:
+            lblText2["text"] = "ERRO"
+            lblText2.config(fg="#c82d58")
+
+            messagebox.showinfo("ERRO", "Expressão inválida!")
+            lblText2["text"] = ""
+            lblText2.config(fg="black")
+        except ZeroDivisionError:
             lblText2["text"] = "ERRO"
             lblText2.config(fg="#c82d58")
 
