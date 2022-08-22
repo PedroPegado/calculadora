@@ -1,8 +1,29 @@
 from tkinter import *
 from tkinter import messagebox
+from math import sqrt
+from turtle import bgcolor
 
+def fatorial(num):
+    result = num
+    cont = num-1
+    if num >= 1:
+        while cont> 0:
+            result *= cont
+            cont -= 1
+        return result
+    else:
+        return 1
+
+def msgErro(msg):
+    lblText["text"] = "ERRO"
+    lblText.config(fg="#c82d58")
+
+    messagebox.showinfo("ERRO", msg)
+    lblText["text"] = ""
+    lblText.config(fg="black")
 
 def alterarTextoBt_1():
+
     lblText["text"] += "1"
 def alterarTextoBt_2():
     lblText["text"] += "2"
@@ -42,19 +63,9 @@ def calcular():
         lblText["text"] = str(resultado)
         lblOp["text"] = str(valores)+" ="
     except SyntaxError:
-        lblText["text"] = "ERRO"
-        lblText.config(fg="#c82d58")
-
-        messagebox.showinfo("ERRO", "Expressão inválida!")
-        lblText["text"] = ""
-        lblText.config(fg="black")
+        msgErro("Erro na sintaxe!")
     except ZeroDivisionError:
-        lblText["text"] = "ERRO"
-        lblText.config(fg="#c82d58")
-
-        messagebox.showinfo("ERRO", "Expressão inválida!")
-        lblText["text"] = ""
-        lblText.config(fg="black")
+        msgErro("Não é possível dividir por zero!")
 
 def apagar():
     textDoLabel = lblText["text"]
@@ -76,6 +87,30 @@ def limpar():
 
 
 def novaJanela():
+
+    def msgErro1(msg):
+        lblText2["text"] = "ERRO"
+        lblText2.config(fg="#c82d58")
+        messagebox.showinfo("ERRO", msg)
+        lblText2["text"] = ""
+        lblText2.config(fg="black")
+    def calcFatorial():
+        try:
+            n = int(lblText2["text"])
+            result = fatorial(n)
+            lblText2["text"] = str(result)
+            lblOp2["text"] = str(n)+"!"+" ="
+        except:
+            msgErro1("ERRO")
+    def calcRaiz():
+        try:
+            n = int(lblText2["text"])
+            result = sqrt(n)
+            lblText2["text"] = str(result)
+            lblOp2["text"] = "√"+str(n)+" ="
+        except:
+            msgErro1("ERRO")
+
     def alterarTextoBt_1():
         lblText2["text"] += "1"
     def alterarTextoBt_2():
@@ -116,19 +151,10 @@ def novaJanela():
             lblText2["text"] = str(resultado)
             lblOp2["text"] = str(valores)+" ="
         except SyntaxError:
-            lblText2["text"] = "ERRO"
-            lblText2.config(fg="#c82d58")
-
-            messagebox.showinfo("ERRO", "Expressão inválida!")
-            lblText2["text"] = ""
-            lblText2.config(fg="black")
+            msgErro1()
         except ZeroDivisionError:
-            lblText2["text"] = "ERRO"
-            lblText2.config(fg="#c82d58")
+           msgErro1()
 
-            messagebox.showinfo("ERRO", "Expressão inválida!")
-            lblText2["text"] = ""
-            lblText2.config(fg="black")
 
     def apagar():
         textDoLabel = lblText2["text"]
@@ -159,64 +185,87 @@ def novaJanela():
     menuVoltar = Menu(barraMenu, tearoff=0)
     menuVoltar.add_command(label='Voltar', command=janela_cient.destroy)
     menuVoltar.add_command(label='Histórico', command=historico)
-    barraMenu.add_cascade(label='OPÇÕES', menu=menuVoltar)
-    janela_cient.config(menu=barraMenu)
+    janela_cient.config(menu=menuVoltar)
+
     labFundo = Label(janela_cient, image=imagemFundo)
     labFundo.pack()
     # criando e posicionando botoes dos numeros
-    bt_1 = Button( janela_cient, bd=0.5, image=img_1,command=alterarTextoBt_1)
+    bt_1 = Button( janela_cient, image=img_1,command=
+alterarTextoBt_1, relief=RAISED, overrelief=RIDGE)
+
     bt_1.place(width=57, height=84, x=28, y=319)
 
-    bt_2 = Button( janela_cient, bd=0.5, image=img_2,command=alterarTextoBt_2)
+    bt_2 = Button( janela_cient, image=img_2,command=
+alterarTextoBt_2, relief=RAISED, overrelief=RIDGE)
+
     bt_2.place(width=57, height=84, x=111, y=319)
 
-    bt_3 = Button( janela_cient, bd=0.5, image=img_3,command=alterarTextoBt_3)
+    bt_3 = Button( janela_cient, image=img_3,command=
+alterarTextoBt_3, relief=RAISED, overrelief=RIDGE)
+
     bt_3.place(width=57, height=84, x=194, y=319)
 
-    bt_4 = Button( janela_cient, bd=0.5, image=img_4,command=alterarTextoBt_4)
+    bt_4 = Button( janela_cient, image=img_4,command=
+alterarTextoBt_4, relief=RAISED, overrelief=RIDGE)
+
     bt_4.place(width=57, height=84, x=28, y=229)
 
-    bt_5 = Button( janela_cient, bd=0.5, image=img_5,command=alterarTextoBt_5)
+    bt_5 = Button( janela_cient, image=img_5,command=
+alterarTextoBt_5, relief=RAISED, overrelief=RIDGE)
+
     bt_5.place(width=57, height=84, x=111, y=229)
 
-    bt_6 = Button( janela_cient, bd=0.5, image=img_6,command=alterarTextoBt_6)
+    bt_6 = Button( janela_cient, image=img_6,command=
+alterarTextoBt_6, relief=RAISED, overrelief=RIDGE)
+
     bt_6.place(width=57, height=84, x=194, y=229)
 
-    bt_7 = Button( janela_cient, bd=0.5, image=img_7,command=alterarTextoBt_7)
+    bt_7 = Button( janela_cient, image=img_7,command=
+alterarTextoBt_7, relief=RAISED, overrelief=RIDGE)
+
     bt_7.place(width=57, height=84, x=28, y=139.5)
 
-    bt_8 = Button( janela_cient, bd=0.5, image=img_8,command=alterarTextoBt_8)
+    bt_8 = Button( janela_cient, image=img_8,command=
+alterarTextoBt_8, relief=RAISED, overrelief=RIDGE)
+
     bt_8.place(width=57, height=84, x=111, y=139.5)
 
-    bt_9 = Button( janela_cient, bd=0.5, image=img_9,command=alterarTextoBt_9)
+    bt_9 = Button( janela_cient, image=img_9,command=
+alterarTextoBt_9, relief=RAISED, overrelief=RIDGE)
+
     bt_9.place(width=57, height=84, x=194, y=139.5)
 
-    bt_0 = Button( janela_cient, bd=0.5, image=img_0,command=alterarTextoBt_0)
+    bt_0 = Button( janela_cient, image=img_0,command=
+alterarTextoBt_0, relief=RAISED, overrelief=RIDGE)
+
     bt_0.place(width=57, height=84, x=111, y=409)
 
     # Criando e posixionando botoes das operacoes
-    btIgual = Button( janela_cient,bd= 0.8, image=img_igaul,command=calcular)
+    btIgual = Button( janela_cient,bd= 0.8, image=img_igaul,command=
+calcular, relief=RAISED, overrelief=SUNKEN)
+
     btIgual.place(width= 85, height=57, x = 287, y= 437)
 
-    btFator = Button( janela_cient,bd= 0.5, image=img_fatorial, command= pegarValorDoMAis)
+    btFator = Button( janela_cient,bd= 0.5, image=img_fatorial, command= calcFatorial, relief=RAISED, overrelief=SUNKEN)
     btFator.place(width= 85, height=57, x = 287, y= 375)
 
-    btPorcent = Button( janela_cient,bd= 0.5, image=img_porcentagem,command= pegarValorDoMenos)
+    btPorcent = Button( janela_cient,bd= 0.5, image=img_porcentagem,command= pegarValorDoMenos, relief=RAISED, overrelief=SUNKEN)
     btPorcent.place(width= 85, height=57, x = 287, y= 314)
 
-    btRad = Button( janela_cient,bd= 0.5, image=img_rad, command= pegarValorDoMult)
+    btRad = Button( janela_cient,bd= 0.5, image=img_rad, command= calcRaiz, relief=RAISED, overrelief=SUNKEN)
+
     btRad.place(width= 85, height=57, x = 287, y= 253)
 
-    btPoten = Button( janela_cient,bd= 0.5, image=img_potencia, command= pegarValorDoDiv)
+    btPoten = Button( janela_cient,bd= 0.5, image=img_potencia, command= pegarValorDoDiv, relief=RAISED, overrelief=SUNKEN)
     btPoten.place(width= 85, height=57, x = 287, y=192)
 
-    btApagar = Button( janela_cient, bd=0.5, image=img_Apagar, command=apagar)
+    btApagar = Button( janela_cient, image=img_Apagar, command=apagar, relief=RAISED, overrelief=RIDGE)
     btApagar.place(width=57, height=84, x=28, y= 409)
 
-    btLimpar = Button( janela_cient, bd= 0.5, command= limpar, image=img_limpar)
+    btLimpar = Button( janela_cient, bd= 0.5, command= limpar, image=img_limpar, relief=RAISED, overrelief=SUNKEN)
     btLimpar.place(width=85, height=57, x=287, y= 132)
 
-    btPonto = Button( janela_cient, bd=0.5, text=".", font="Arial 15 bold",command=alterarTextoBt_ponto,  image=img_ponto)
+    btPonto = Button( janela_cient, text=".", font="Arial 15 bold",command=alterarTextoBt_ponto,  image=img_ponto, relief=RAISED, overrelief=RIDGE)
     btPonto.place( width=57, height=84,x=194, y=409)
 
 
@@ -239,7 +288,8 @@ menuOpções = Menu(barraMenu, tearoff=0)
 menuOpções.add_command(label='Científica', command=novaJanela)
 menuOpções.add_command(label='Histórico', command=historico)
 barraMenu.add_cascade(label='OPÇÕES', menu=menuOpções)
-janela.config(menu= barraMenu)
+janela.config(menu= menuOpções)
+
 
 #imagens
 img_1 = PhotoImage(file='imagens\\designs\\1.png')
@@ -278,59 +328,59 @@ labFundo.pack()
 
 
 # criando e posicionando botoes dos numeros
-bt_1 = Button(janela, bd=0.5, image=img_1,command=alterarTextoBt_1)
+bt_1 = Button(janela, image=img_1,command=alterarTextoBt_1, relief=RAISED, overrelief=RIDGE)
 bt_1.place(width=57, height=84, x=28, y=319)
 
-bt_2 = Button(janela, bd=0.5, image=img_2,command=alterarTextoBt_2)
+bt_2 = Button(janela, image=img_2,command=alterarTextoBt_2, relief=RAISED, overrelief=RIDGE)
 bt_2.place(width=57, height=84, x=111, y=319)
 
-bt_3 = Button(janela, bd=0.5, image=img_3,command=alterarTextoBt_3)
+bt_3 = Button(janela, image=img_3,command=alterarTextoBt_3, relief=RAISED, overrelief=RIDGE)
 bt_3.place(width=57, height=84, x=194, y=319)
 
-bt_4 = Button(janela, bd=0.5, image=img_4,command=alterarTextoBt_4)
+bt_4 = Button(janela, image=img_4,command=alterarTextoBt_4, relief=RAISED, overrelief=RIDGE)
 bt_4.place(width=57, height=84, x=28, y=229)
 
-bt_5 = Button(janela, bd=0.5, image=img_5,command=alterarTextoBt_5)
+bt_5 = Button(janela, image=img_5,command=alterarTextoBt_5, relief=RAISED, overrelief=RIDGE)
 bt_5.place(width=57, height=84, x=111, y=229)
 
-bt_6 = Button(janela, bd=0.5, image=img_6,command=alterarTextoBt_6)
+bt_6 = Button(janela, image=img_6,command=alterarTextoBt_6, relief=RAISED, overrelief=RIDGE)
 bt_6.place(width=57, height=84, x=194, y=229)
 
-bt_7 = Button(janela, bd=0.5, image=img_7,command=alterarTextoBt_7)
+bt_7 = Button(janela, image=img_7,command=alterarTextoBt_7, relief=RAISED, overrelief=RIDGE)
 bt_7.place(width=57, height=84, x=28, y=139.5)
 
-bt_8 = Button(janela, bd=0.5, image=img_8,command=alterarTextoBt_8)
+bt_8 = Button(janela, image=img_8,command=alterarTextoBt_8, relief=RAISED, overrelief=RIDGE)
 bt_8.place(width=57, height=84, x=111, y=139.5)
 
-bt_9 = Button(janela, bd=0.5, image=img_9,command=alterarTextoBt_9)
+bt_9 = Button(janela, image=img_9,command=alterarTextoBt_9, relief=RAISED, overrelief=RIDGE)
 bt_9.place(width=57, height=84, x=194, y=139.5)
 
-bt_0 = Button(janela, bd=0.5, image=img_0,command=alterarTextoBt_0)
+bt_0 = Button(janela, image=img_0,command=alterarTextoBt_0, relief=RAISED, overrelief=RIDGE)
 bt_0.place(width=57, height=84, x=111, y=409)
 
 # Criando e posixionando botoes das operacoes
-btIgual = Button(janela,bd= 0.8, image=img_igaul,command=calcular)
+btIgual = Button(janela,bd= 0.5, image=img_igaul,command=calcular, relief=RAISED, overrelief=SUNKEN)
 btIgual.place(width= 85, height=57, x = 287, y= 437)
 
-btMais = Button(janela,bd= 0.5, image=img_mais, command= pegarValorDoMAis)
+btMais = Button(janela,bd= 0.5, image=img_mais, command= pegarValorDoMAis, relief=RAISED, overrelief=SUNKEN)
 btMais.place(width= 85, height=57, x = 287, y= 375)
 
-btMenos = Button(janela,bd= 0.5, image=img_menos,command= pegarValorDoMenos)
+btMenos = Button(janela,bd= 0.5, image=img_menos,command= pegarValorDoMenos, relief=RAISED, overrelief=SUNKEN)
 btMenos.place(width= 85, height=57, x = 287, y= 314)
 
-btMult = Button(janela,bd= 0.5, image=img_multiplicar, command= pegarValorDoMult)
+btMult = Button(janela,bd= 0.5, image=img_multiplicar, command= pegarValorDoMult, relief=RAISED, overrelief=SUNKEN)
 btMult.place(width= 85, height=57, x = 287, y= 253)
 
-btDividir = Button(janela,bd= 0.5, image=img_dividir, command= pegarValorDoDiv)
+btDividir = Button(janela,bd= 0.5, image=img_dividir, command= pegarValorDoDiv, relief=RAISED, overrelief=SUNKEN)
 btDividir.place(width= 85, height=57, x = 287, y=192)
 
-btApagar = Button(janela, bd=0.5, image=img_Apagar, command=apagar)
+btApagar = Button(janela, image=img_Apagar, command=apagar, relief=RAISED, overrelief=RIDGE)
 btApagar.place(width=57, height=84, x=28, y= 409)
 
-btLimpar = Button(janela, bd= 0.5, command= limpar, image=img_limpar)
+btLimpar = Button(janela, bd= 0.5, command= limpar, image=img_limpar, relief=RAISED, overrelief=SUNKEN)
 btLimpar.place(width=85, height=57, x=287, y= 132)
 
-btPonto = Button(janela, bd=0.5, text=".", font="Arial 15 bold",command=alterarTextoBt_ponto,  image=img_ponto)
+btPonto = Button(janela, text=".", font="Arial 15 bold",command=alterarTextoBt_ponto,  image=img_ponto, relief=RAISED, overrelief=RIDGE)
 btPonto.place( width=57, height=84,x=194, y=409)
 
 
@@ -343,5 +393,3 @@ lblOp.place(width=300, height=20, x=30, y=10)
 
 
 janela.mainloop()
-
-
