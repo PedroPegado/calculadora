@@ -3,6 +3,8 @@ from tkinter import messagebox
 from math import sqrt
 from turtle import bgcolor
 
+from click import command
+
 def fatorial(num):
     result = num
     cont = num-1
@@ -14,6 +16,10 @@ def fatorial(num):
     else:
         return 1
 
+def porcentagem():
+    pass
+
+    
 def msgErro(msg):
     lblText["text"] = "ERRO"
     lblText.config(fg="#c82d58")
@@ -88,7 +94,7 @@ def limpar():
 
 def novaJanela():
 
-    def msgErro1(msg):
+    def msgErro1(msg='ERRO'):
         lblText2["text"] = "ERRO"
         lblText2.config(fg="#c82d58")
         messagebox.showinfo("ERRO", msg)
@@ -104,12 +110,14 @@ def novaJanela():
             msgErro1("ERRO")
     def calcRaiz():
         try:
-            n = int(lblText2["text"])
+            n = float(lblText2["text"])
             result = sqrt(n)
             lblText2["text"] = str(result)
             lblOp2["text"] = "√"+str(n)+" ="
         except:
             msgErro1("ERRO")
+    def calcPorcentagem():
+        pass
 
     def alterarTextoBt_1():
         lblText2["text"] += "1"
@@ -138,7 +146,7 @@ def novaJanela():
     def pegarValorDoMAis():
         lblText2["text"] += "!"
     def pegarValorDoMenos():
-        lblText2["text"] +="-"
+        lblText2["text"] +="%"
     def pegarValorDoDiv():
         lblText2["text"] +="**"
     def pegarValorDoMult():
@@ -153,7 +161,9 @@ def novaJanela():
         except SyntaxError:
             msgErro1()
         except ZeroDivisionError:
-           msgErro1()
+            msgErro1()
+        except TypeError:
+            msgErro1()
 
 
     def apagar():
@@ -249,7 +259,7 @@ calcular, relief=RAISED, overrelief=SUNKEN)
     btFator = Button( janela_cient,bd= 0.5, image=img_fatorial, command= calcFatorial, relief=RAISED, overrelief=SUNKEN)
     btFator.place(width= 85, height=57, x = 287, y= 375)
 
-    btPorcent = Button( janela_cient,bd= 0.5, image=img_porcentagem,command= pegarValorDoMenos, relief=RAISED, overrelief=SUNKEN)
+    btPorcent = Button( janela_cient,bd= 0.5, image=img_porcentagem,command= calcPorcentagem, relief=RAISED, overrelief=SUNKEN)
     btPorcent.place(width= 85, height=57, x = 287, y= 314)
 
     btRad = Button( janela_cient,bd= 0.5, image=img_rad, command= calcRaiz, relief=RAISED, overrelief=SUNKEN)
